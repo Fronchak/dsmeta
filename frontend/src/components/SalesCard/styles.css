@@ -1,0 +1,96 @@
+.search-info-container {
+    background-color: #283142;
+    border-radius: 10px;
+    padding: 30px 10px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dsmeta-group-form-control {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.input-container {
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #384459;
+    background-color: #1B2531;
+    padding: 12px 24px;
+    border-radius: 5px;
+}
+
+.dsmeta-form-control {
+    color: #9AAABE;
+    background-color: #1B2531;
+    font-size: 18px;
+}
+
+.person-icon-container {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 107, 114, 0.1);
+    border: 1px solid #FF6B72;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.sales-table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.sales-table thead {
+    font-size: 16px;
+    font-weight: 700;
+    height: 55px;
+}
+
+.sales-table tbody tr {
+    height: 75px;
+}
+
+.sales-table td {
+    text-align: center;
+    align-items: center;
+    border-top: 1px solid #5F6E82;
+}
+
+.sales-table tbody tr:nth-child(odd) {
+    background-color: #242C3B;
+}
+
+.sales-table tbody tr:nth-child(even) {
+    background-color: #283142;
+}
+
+.sales-table tbody tr:hover > td {
+    background-color: #384459;
+}
+
+.medium-layout {
+    display: none;
+}
+
+.large-layout {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    .medium-layout {
+        display: table-cell;
+    } 
+}
+
+@media (min-width: 990px) {
+    .large-layout {
+        display: table-cell;
+    }
+}
