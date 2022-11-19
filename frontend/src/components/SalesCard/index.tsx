@@ -2,7 +2,9 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { Sale } from '../../models/sales';
 import NotificationButton from '../NotificationButton';
+import { BASE_URL } from '../util/request';
 import './styles.css';
 
 function SalesCard() {
@@ -12,10 +14,13 @@ function SalesCard() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(new Date());
 
+    const [sales, setSales] = useState<Sale[]>([]);
+
     useEffect(() => {
-        axios.get("http://localhost:8080/sale")
+        axios.get(`${BASE_URL}/sale`)
             .then(response => {
                 console.log(response.data);
+                setSales(response.data.content);
             })
     }, [])
 
@@ -54,39 +59,24 @@ function SalesCard() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="large-layout">#547</td>
-                            <td className="medium-layout">15/06/2022</td>
-                            <td>Anakin</td>
-                            <td className="large-layout">15</td>
-                            <td className="large-layout">11</td>
-                            <td>R$ 1500,00</td>
-                            <td className="table-icon-cell">
-                                <NotificationButton />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="large-layout">#547</td>
-                            <td className="medium-layout">15/06/2022</td>
-                            <td>Anakin</td>
-                            <td className="large-layout">15</td>
-                            <td className="large-layout">11</td>
-                            <td>R$ 1500,00</td>
-                            <td className="table-icon-cell">
-                                <NotificationButton />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="large-layout">#547</td>
-                            <td className="medium-layout">15/06/2022</td>
-                            <td>Anakin</td>
-                            <td className="large-layout">15</td>
-                            <td className="large-layout">11</td>
-                            <td>R$ 1500,00</td>
-                            <td className="table-icon-cell">
-                                <NotificationButton />
-                            </td>
-                        </tr>
+                        {sales.map(sale => {
+                            return (
+                                <tr key={sale.id}>
+                                    <td className="large-layout">{sale.id}</td>
+                                    <td className="medium-layout">{new Date(sale.date).toLocaleDateString()}</td>
+                                    <td>{sale.sellerName}</td>
+                                    <td className="large-layout">{sale.visited}</td>
+                                    <td className="large-layout">{sale.deals}</td>
+                                    <td>R$ {sale.amount.toFixed(2)}</td>
+                                    <td className="table-icon-cell">
+                                        <NotificationButton  />
+                                    </td>
+                                </tr>
+
+                                )
+                            })
+
+                        }
                     </tbody>
                 </table>
             </div>
