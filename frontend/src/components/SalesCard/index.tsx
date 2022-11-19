@@ -20,11 +20,9 @@ function SalesCard() {
 
         const dateMinIsoString = minDate.toISOString();
         const dateMin = dateMinIsoString.slice(0, dateMinIsoString.indexOf('T'));
-        console.log(dateMin);
 
         const dateMaxIsoString = maxDate.toISOString();
         const dateMax = dateMaxIsoString.slice(0, dateMaxIsoString.indexOf('T'));
-        console.log(dateMax);
 
         axios.get(`${BASE_URL}/sale?minDate=${dateMin}&maxDate=${dateMax}`)
             .then(response => {
@@ -78,7 +76,7 @@ function SalesCard() {
                                     <td className="large-layout">{sale.deals}</td>
                                     <td>R$ {sale.amount.toFixed(2)}</td>
                                     <td className="table-icon-cell">
-                                        <NotificationButton  />
+                                        <NotificationButton id={sale.id}  />
                                     </td>
                                 </tr>
 
